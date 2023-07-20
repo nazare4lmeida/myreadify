@@ -1,8 +1,6 @@
-const app = require("./myreadify/src/app")
+const app = require("./src/app")
 
-const PORT = 4444
-
-//iniciando o servidor
+const PORT = 3000 
 app.listen(PORT, () => {
-    console.log(`Seu servidor está na porta: ${PORT}`)
+  console.log(`Seu servidor está na porta: ${PORT}`)
 })
