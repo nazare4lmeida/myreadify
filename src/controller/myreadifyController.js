@@ -13,8 +13,8 @@ const getAllBooks = async (request, response) => {
 
 const getBooksByAuthor = async (request, response) => {
   try {
-    const authorsRequest = request.query.author.toLowerCase()
-    const authorsFilter = await Book.find({ authors: { $in: [authorsRequest] } })
+    const authorRequest = request.query.author.toLowerCase()
+    const authorsFilter = await Book.find({ authors: { $in: [authorRequest] } })
     if (authorsFilter.length > 0) {
       response.status(200).json(authorsFilter)
     } else {
@@ -33,7 +33,6 @@ const addBooks = async (request, response) => {
   try {
     const booksData = request.body
 
-    // Verificando se o corpo da requisição contém um array
     if (!Array.isArray(booksData)) {
       return response.status(400).send({ message: "O corpo da requisição deve conter um array de livros." })
     }
@@ -52,7 +51,18 @@ const addBooks = async (request, response) => {
   }
 }
 
+const updateUserPreferences = async (request, response) => {
+  try {
+    const userId = request.params.userId
+    const preferences = request.body.preferences 
 
+    await User.findByIdAndUpdate(userId, { preferences })
+
+    response.status(200).json({ message: "Preferências atualizadas com sucesso." })
+  } catch (error) {
+    response.status(500).send({ message: "Erro ao atualizar preferências do usuário." })
+  }
+}
 
 const updateBook = async (request, response) => {
   const idRequest = request.params.id
@@ -122,6 +132,7 @@ module.exports = {
   getAllBooks,
   getBooksByAuthor,
   addBooks,
+  updateUserPreferences,
   updateBook,
   deleteBook,
   updateFavBooks,

@@ -3,6 +3,8 @@ const express = require("express")
 const app = express()
 app.use(express.json())
 
+const swaggerDocument = require('./swagger/swagger.js')
+
 const swaggerJsdoc = require("swagger-jsdoc")
 const swaggerUi = require("swagger-ui-express")
 
@@ -16,7 +18,7 @@ const options = {
     basePath: "/",
   },
   apis: ["./src/routes/myreadifyRoutes"],
-};
+}
 
 const specs = swaggerJsdoc(options)
 app.use("/docs", swaggerUi.serve, swaggerUi.setup(specs))
