@@ -8,4 +8,12 @@ services:
       - MONGODB_URI=mongodb+srv://nazyalmeida:killmeleon@cluster4.vown5d8.mongodb.net/
     env_secrets:
       - MONGODB_URI
-    port:
+
+  - name: my-app
+    type: web
+    plan: dev
+    env:
+      NODE_ENV: production
+    buildCommand: npm install
+    startCommand: npm start
+    port: 3000
