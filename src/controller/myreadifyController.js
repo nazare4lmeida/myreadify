@@ -51,19 +51,6 @@ const addBooks = async (request, response) => {
   }
 }
 
-const updateUserPreferences = async (request, response) => {
-  try {
-    const userId = request.params.userId
-    const preferences = request.body.preferences 
-
-    await User.findByIdAndUpdate(userId, { preferences })
-
-    response.status(200).json({ message: "Preferências atualizadas com sucesso." })
-  } catch (error) {
-    response.status(500).send({ message: "Erro ao atualizar preferências do usuário." })
-  }
-}
-
 const updateBook = async (request, response) => {
   const idRequest = request.params.id
   const bookRequest = request.body
@@ -132,7 +119,6 @@ module.exports = {
   getAllBooks,
   getBooksByAuthor,
   addBooks,
-  updateUserPreferences,
   updateBook,
   deleteBook,
   updateFavBooks,
