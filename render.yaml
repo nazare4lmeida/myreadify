@@ -2,14 +2,6 @@ version: 0.1
 
 services:
   - name: myreadify
-    build:
-      dockerfile: Dockerfile
-    env:
-      - MONGODB_URI=mongodb+srv://nazyalmeida:killmeleon@cluster4.vown5d8.mongodb.net/
-    env_secrets:
-      - MONGODB_URI
-
-  - name: my-app
     type: web
     plan: dev
     env:
@@ -17,3 +9,11 @@ services:
     buildCommand: npm install
     startCommand: npm start
     port: 3000
+    build:
+      dockerfile: Dockerfile
+    env:
+      - MONGODB_URI=mongodb+srv://nazyalmeida:killmeleon@cluster4.vown5d8.mongodb.net/
+    env_secrets:
+      - MONGODB_URI
+
+    
