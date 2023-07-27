@@ -4,7 +4,6 @@ services:
   - name: myreadify
     type: web
     plan: dev
-    env:
       NODE_ENV: production
     buildCommand: npm install
     startCommand: npm start
