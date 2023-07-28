@@ -4,11 +4,8 @@ const app = express()
 const controllerBooks = require('./controller/myreadifyController')
 app.use(express.json())
 
-const swaggerDocument = require('./swagger/swagger.js')
-const swaggerFile = require('./swagger/swagger_output.json')
-
-const swaggerJsdoc = require("swagger-jsdoc")
 const swaggerUi = require("swagger-ui-express")
+const swaggerFile = require('../swagger/swagger_output.json')
 
 const options = {
   swaggerDefinition: {
@@ -22,8 +19,7 @@ const options = {
   apis: ["./src/routes/myreadifyRoutes"],
 }
 
-const specs = swaggerJsdoc(options)
-app.use("/docs", swaggerUi.serve, swaggerUi.setup(specs))
+app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerFile))
 
 const mongoose = require("mongoose")
 const MONGODB_URI = process.env.MONGODB_URI
